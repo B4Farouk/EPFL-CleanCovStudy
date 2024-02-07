@@ -1,0 +1,38 @@
+#!/bin/bash
+
+###################
+### SLURM CONFIG
+###################
+
+### JOB SPECIFICATION
+#SBATCH --job-name=fbd
+#SBATCH --mail-user=johnny.borkhoch@epfl.ch
+#SBATCH --mail-type=begin,end
+
+### RESOURCES
+#SBATCH --qos=gpu
+#SBATCH --time=02:00:00
+
+#SBATCH --nodes=1-1
+#SBATCH --gpus-per-node=1
+#SBATCH --mincpus=8
+
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --account=vita
+#SBATCH --mem=30G
+
+### OUTPUT
+#SBATCH --error=/home/borkhoch/fbd/outputs/job_%J.err
+#SBATCH --output=/home/borkhoch/fbd/outputs/job_%J.out
+
+###################
+### START OF JOB
+###################
+conda init bash
+. /home/borkhoch/.bashrc
+conda activate /home/borkhoch/anaconda3/envs/fbd
+
+nvidia-smi
+
+bash /home/borkhoch/fbd/slurm/run_script.run borkhoch debug_config_johnny.json

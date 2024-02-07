@@ -1,0 +1,47 @@
+{
+    "strategy": {
+        "name": "mean-variance",
+        "init_config": {
+            "cov_cfg": {
+                "estimator": {
+                    "name": "natural",
+                    "params": {}
+                },
+                "cleaner": {
+                    "name": null,
+                    "params": {}
+                }
+            },
+            "solver_cfg": {
+                "weight_bounds": [
+                    -0.2,
+                    1.2
+                ],
+                "verbose": false
+            }
+        }
+    },
+    "training_env": {
+        "window_days_advancement": 7,
+        "window_days_length": 90,
+        "window_min_samples": 240,
+        "test_size": 0.1,
+        "window_max_nan_pct": 0.2,
+        "save_dir": "/Users/tchanee/Documents/EPFL/MA3/Financial Big Data/project/results/",
+        "use_multiproc": false,
+        "multiproc_config": {
+            "processes": 2
+        }
+    },
+    "data_loader": {
+        "init_config": {
+            "data_path": "/Users/tchanee/Documents/EPFL/MA3/Financial Big Data/project/data/processed/v01"
+        },
+        "mode": "as_merged_dataframe"
+    },
+    "logging": {
+        "path": "/Users/tchanee/Documents/EPFL/MA3/Financial Big Data/project/results/logs/natural_none.log",
+        "level": "DEBUG"
+    },
+    "use_dask": true
+}
